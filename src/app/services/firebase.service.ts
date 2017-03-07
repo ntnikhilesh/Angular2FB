@@ -32,22 +32,24 @@ this.folder='listingimages';
   }
 
 
-  addListing(listing){
+  addListing(listing)
+  {
 
-  //Create root ref
+  		//Create root ref
 
-  let storageRef=firebase.storage().ref();
+  		let storageRef=firebase.storage().ref();
 
-  for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
+  		for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
 
-  let path='/${this.folder}/${selectedFile.name}';
-  let iRef=storageRef.child(path);
-  iRef.put(selectedFile).then((snapshot)=>{
-  listing.image=selectedFile.name;
-  listing.path=path;
-  return this.listings.push(listing);
+  		let path='/${this.folder}/${selectedFile.name}';
+  		let iRef=storageRef.child(path);
+  		iRef.put(selectedFile).then((snapshot)=>
+  		{
+  			listing.image=selectedFile.name;
+  			listing.path=path;
+  			return this.listings.push(listing);
 
-  });
+  		});
 
   }
 

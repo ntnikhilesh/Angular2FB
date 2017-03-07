@@ -10,41 +10,50 @@ import * as firebase from 'firebase';
   templateUrl: './listing.component.html',
   styleUrls: ['./listing.component.css']
 })
-export class ListingComponent implements OnInit {
+export class ListingComponent implements OnInit 
+{
 
-id:any;
-listing:any;
-imageUrl:any;
-path:any[];
+	id:any;
+	listing:any;
+	imageUrl:any;
+	path:string;
 
-  constructor(
-private firebaseService:FirebaseService,
-private router:Router,
-private route:ActivatedRoute
-  ) { }
 
-  ngOnInit() { 
-//Get ID from URL
 
-this.id=this.route.snapshot.params['id'];
-this.firebaseService.getListingDetails(this.id).subscribe(listing=>{this.listing=listing;
+  	constructor
+ 	(
+		private firebaseService:FirebaseService,
+		private router:Router,
+		private route:ActivatedRoute
+  	) { }
 
-console.log(listing);  
+  	ngOnInit() 
+  	{ 
+		//Get ID from URL
 
-// Storage Ref 
-let storageRef=firebase.storage().ref();
-let spaceRef=storageRef.child(listing.path);
+		this.id=this.route.snapshot.params['id'];
+		this.firebaseService.getListingDetails(this.id).subscribe(listing=>
+		{
+			this.listing=listing;
+			
 
-storageRef.child(listing.path).getDownloadURL().then((url)=>{
-	//set image url
+			console.log(listing);  
 
-	this.imageUrl=url;
-}).catch((error)=>{
-	console.log(error);
-});
+			
+			let storageRef=firebase.storage().ref();
+			let spaceRef=storageRef.child(this.listing.path);
 
-}); 
+			storageRef.child(this.listing.path).getDownloadURL().then((url)=>
+			{
+				
+				this.imageUrl=url;
+			}).catch((error)=>
+			{
+				console.log(error);
+			});
 
-  }
+		});
+
+  	}
 
 }
