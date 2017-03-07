@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
 import {Router,ActivatedRoute,Params} from '@angular/router';
 
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-listing',
   templateUrl: './listing.component.html',
@@ -12,7 +14,8 @@ export class ListingComponent implements OnInit {
 
 id:any;
 listing:any;
-imgUrl:any;
+imageUrl:any;
+//path:any[];
 
   constructor(
 private firebaseService:FirebaseService,
@@ -20,16 +23,27 @@ private router:Router,
 private route:ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { 
 //Get ID from URL
 
 this.id=this.route.snapshot.params['id'];
 this.firebaseService.getListingDetails(this.id).subscribe(listing=>{this.listing=listing;
 
-console.log(listing);
+console.log(listing);  
 
-// Storage Ref
-});
+// Storage Ref 
+//let storageRef=firebase.storage().ref();
+//let spaceRef=storageRef.child(listing.path);
+
+//storageRef.child(listing.path).getDownloadURL().then((url)=>{
+	//set image url
+
+	//this.imageUrl=url;
+//}).catch((error)=>{
+	//console.log(error);
+//});
+
+}); 
 
   }
 
