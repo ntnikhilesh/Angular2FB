@@ -15,7 +15,7 @@ export class ListingComponent implements OnInit {
 id:any;
 listing:any;
 imageUrl:any;
-//path:any[];
+path:any[];
 
   constructor(
 private firebaseService:FirebaseService,
@@ -32,16 +32,16 @@ this.firebaseService.getListingDetails(this.id).subscribe(listing=>{this.listing
 console.log(listing);  
 
 // Storage Ref 
-//let storageRef=firebase.storage().ref();
-//let spaceRef=storageRef.child(listing.path);
+let storageRef=firebase.storage().ref();
+let spaceRef=storageRef.child(listing.path);
 
-//storageRef.child(listing.path).getDownloadURL().then((url)=>{
+storageRef.child(listing.path).getDownloadURL().then((url)=>{
 	//set image url
 
-	//this.imageUrl=url;
-//}).catch((error)=>{
-	//console.log(error);
-//});
+	this.imageUrl=url;
+}).catch((error)=>{
+	console.log(error);
+});
 
 }); 
 

@@ -29,19 +29,19 @@ private router:Router
 
   onAddSubmit()
   {
-  //console.log(this.title);
+  		//console.log(this.title);
 
 
-  let listing=
-  {
+  		let listing=
+  		{
 
-  title:this.title,
-  city:this.city,
-  owner:this.owner,
-  bedrooms:this.bedrooms,
-  price:this.price,
-  type:this.type
-  }
+  			title:this.title,
+  			city:this.city,
+  			owner:this.owner,
+  			bedrooms:this.bedrooms,
+  			price:this.price,
+  			type:this.type
+  		}
   	this.firebaseService.addListing(listing); 
   	this.router.navigate(['listings']);
 
