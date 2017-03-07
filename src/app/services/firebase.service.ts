@@ -11,7 +11,7 @@ listings:FirebaseListObservable<any[]>;
 listing:FirebaseObjectObservable<any[]>;
 
 folder:any;
-
+num:number;
 
   constructor(private af:AngularFire) { 
 this.folder='listingimages';
@@ -32,22 +32,26 @@ this.folder='listingimages';
   }
 
 
-  addListing(listing){
+  addListing(listing)
+  {
+    
+    this.num=this.num+1;
 
-  //Create root ref
+  		//Create root ref
 
-  let storageRef=firebase.storage().ref();
+  		let storageRef=firebase.storage().ref();
 
-  for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
+  		for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
 
-  let path='/${this.folder}/${selectedFile.name}';
-  let iRef=storageRef.child(path);
-  iRef.put(selectedFile).then((snapshot)=>{
-  listing.image=selectedFile.name;
-  listing.path=path;
-  return this.listings.push(listing);
+  		let path='/TD-images/'+Math.random();
+  		let iRef=storageRef.child(path);
+  		iRef.put(selectedFile).then((snapshot)=>
+  		{
+  			listing.image=selectedFile.name;
+  			listing.path=path;
+  			return this.listings.push(listing);
 
-  });
+  		});
 
   }
 
