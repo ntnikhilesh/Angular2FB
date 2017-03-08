@@ -56,4 +56,13 @@ export class ListingComponent implements OnInit
 
   	}
 
+
+  	updateItem()
+  	{	
+  		console.log(this.id);
+  		this.id=this.route.snapshot.params['id'];
+  		this.firebaseService.updateListing(this.id);
+  		
+  	}
+
 }

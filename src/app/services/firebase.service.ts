@@ -31,6 +31,13 @@ this.folder='listingimages';
 
   }
 
+  updateListing(id)
+  {
+    console.log(id);
+    const itemObservable = this.af.database.object('/listings/'+id);
+    itemObservable.update({ owner: 'cc' });
+  }
+
 
   addListing(listing)
   {
