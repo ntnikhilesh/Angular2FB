@@ -65,4 +65,11 @@ export class ListingComponent implements OnInit
   		
   	}
 
+  	deleteItem()
+  	{
+  		console.log(this.id);
+  		this.id=this.route.snapshot.params['id'];
+  		this.firebaseService.deleteListing(this.id);
+  	}
+
 }
