@@ -7,71 +7,83 @@ import { AfoListObservable,AfoObjectObservable, AngularFireOffline } from 'angul
 import * as firebase from 'firebase';
 
 @Injectable()
-export class FirebaseService {
-listings:FirebaseListObservable<any[]>;
-olistings:AfoListObservable<any[]>;
+export class FirebaseService 
+{
+    listings:FirebaseListObservable<any[]>;
+    olistings:AfoListObservable<any[]>;
 
-listing:FirebaseObjectObservable<any[]>;
-olisting:AfoObjectObservable<any>;
+    listing:FirebaseObjectObservable<any[]>;
+    olisting:AfoObjectObservable<any>;
 
-folder:any;
-num:number;
+    folder:any;
+    num:number;
 
-  constructor(private af:AngularFire,
-  private afo: AngularFireOffline) { 
-this.folder='listingimages';
-  }
+    constructor(private af:AngularFire,
+    private afo: AngularFireOffline) 
+    { 
+        this.folder='listingimages';
+    }
 
-  getListings(){
-  this.listings=this.af.database.list('/listings') as FirebaseListObservable<Listing[]>
-  return this.listings;
-  }
+    getListings()
+    {
+      this.listings=this.af.database.list('/listings') as FirebaseListObservable<Listing[]>
+      return this.listings;
+    }
 
 
-  getafoListings()
-  {
+    getafoListings()
+    {
        this.olistings=this.afo.database.list('/listings') as AfoListObservable<Listing[]>
-      return this.olistings
+        return this.olistings
 
-  
-  }
-
+    }
 
 
 
 
 
+    getoListingDetails(id)
+    {
+
+        this.olisting=this.afo.database.object('/listings/'+id) as AfoObjectObservable<Listing>
+
+
+        return this.olisting;
+
+    }
 
 
 
 
 
-  getListingDetails(id){
 
-  this.listing=this.af.database.object('/listings/'+id) as FirebaseObjectObservable<Listing>
+    getListingDetails(id)
+    {
 
-
-  return this.listing;
-
-  }
-
-  updateListing(id)
-  {
-    console.log(id);
-    const itemObservable = this.af.database.object('/listings/'+id);
-    itemObservable.update({ owner: 'CC' });
-  }
-
-  deleteListing(id)
-  {
-    console.log(id);
-    const itemObservable = this.af.database.object('/listings/'+id);
-    itemObservable.remove();
-  }
+        this.listing=this.af.database.object('/listings/'+id) as FirebaseObjectObservable<Listing>
 
 
-  addListing(listing)
-  {
+        return this.listing;
+
+    }
+
+    updateListing(id)
+    {
+      console.log(id);
+      const itemObservable = this.af.database.object('/listings/'+id);
+      itemObservable.update({ owner: 'CC' });
+    }
+
+    deleteListing(id)
+    {
+      console.log(id);
+      const itemObservable = this.af.database.object('/listings/'+id);
+      itemObservable.remove();
+    }
+
+
+    addListing(listing)
+    {
 
 
    
@@ -84,19 +96,21 @@ this.folder='listingimages';
 
   		let storageRef=firebase.storage().ref();
 
-  		for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]){
+  		for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]])
+      {
 
-  		let path='/TD-images/'+Math.random();
-  		let iRef=storageRef.child(path);
-  		iRef.put(selectedFile).then((snapshot)=>
-  		{
-  			listing.image=selectedFile.name;
-  			listing.path=path;
-  			return this.listings.push(listing);
 
-  		}); 
+  		  let path='/TD-images/'+Math.random();
+  		  let iRef=storageRef.child(path);
+  		  iRef.put(selectedFile).then((snapshot)=>
+  		  {
+  			   listing.image=selectedFile.name;
+  			   listing.path=path;
+  			   return this.listings.push(listing);
 
-  } 
+  		  }); 
+
+      } 
 
   }
 
@@ -104,7 +118,8 @@ this.folder='listingimages';
 
 }
 
-interface Listing{
+interface Listing
+{
 	$key?:string;
 	title?:string;
 	type?:string;

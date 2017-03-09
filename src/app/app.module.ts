@@ -21,6 +21,7 @@ import { ListingComponent } from './components/listing/listing.component';
 import { AddListingComponent } from './components/add-listing/add-listing.component';
 import { EditListingComponent } from './components/edit-listing/edit-listing.component';
 import { OfflineComponent } from './components/offline/offline.component';
+import { OlistingComponent } from './components/olisting/olisting.component';
 
 
 export const firebaseConfig={
@@ -41,6 +42,7 @@ const appRoutes:Routes=[
 {path:'', component:HomeComponent},
 {path:'listings',component:ListingsComponent},
 {path:'listing/:id', component:ListingComponent},
+{path:'olisting/:id', component:OlistingComponent},
 {path:'add-listings',component:AddListingComponent},
 {path:'offline',component:OfflineComponent}
 ]
@@ -54,7 +56,8 @@ const appRoutes:Routes=[
     ListingComponent,
     AddListingComponent,
     EditListingComponent,
-    OfflineComponent
+    OfflineComponent,
+    OlistingComponent
   ],
   imports: [
     BrowserModule,
