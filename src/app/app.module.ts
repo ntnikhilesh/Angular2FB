@@ -11,6 +11,8 @@ import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import {FirebaseService} from './services/firebase.service';
 
+import { AngularFireOfflineModule } from 'angularfire2-offline';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListingsComponent } from './components/listings/listings.component';
@@ -18,6 +20,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ListingComponent } from './components/listing/listing.component';
 import { AddListingComponent } from './components/add-listing/add-listing.component';
 import { EditListingComponent } from './components/edit-listing/edit-listing.component';
+import { OfflineComponent } from './components/offline/offline.component';
 
 
 export const firebaseConfig={
@@ -38,7 +41,8 @@ const appRoutes:Routes=[
 {path:'', component:HomeComponent},
 {path:'listings',component:ListingsComponent},
 {path:'listing/:id', component:ListingComponent},
-{path:'add-listings',component:AddListingComponent}
+{path:'add-listings',component:AddListingComponent},
+{path:'offline',component:OfflineComponent}
 ]
 
 @NgModule({
@@ -49,13 +53,15 @@ const appRoutes:Routes=[
     NavbarComponent,
     ListingComponent,
     AddListingComponent,
-    EditListingComponent
+    EditListingComponent,
+    OfflineComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     FlashMessagesModule,
+    AngularFireOfflineModule,
     AngularFireModule.initializeApp(firebaseConfig,firebaseAuthConfig),
     RouterModule.forRoot(appRoutes)
   ],

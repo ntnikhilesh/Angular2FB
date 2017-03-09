@@ -3,6 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service';
 import {Router} from '@angular/router';
 
+import {AngularFire, FirebaseListObservable,FirebaseObjectObservable} from 'angularfire2';
+
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-add-listing',
   templateUrl: './add-listing.component.html',
@@ -29,6 +33,12 @@ private router:Router
 
   onAddSubmit()
   {
+
+    
+
+
+
+
   		//console.log(this.title);
 
 
@@ -42,9 +52,14 @@ private router:Router
   			price:this.price,
   			type:this.type
   		}
+
   	this.firebaseService.addListing(listing); 
   	this.router.navigate(['listings']);
 
   }
+
+  
+
+
 
 }

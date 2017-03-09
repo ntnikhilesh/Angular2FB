@@ -1,0 +1,7 @@
+<h1> Offline Demo </h1>
+<ul class="list-group">
+	<li class="list-group-item" *ngFor="let listing of olistings">
+			<a [routerLink]="['/listing/'+listing.$key]">{{listing.title}}</a>
+	</li>
+
+</ul>

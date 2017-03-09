@@ -2,18 +2,23 @@ import { Injectable } from '@angular/core';
 
 import {AngularFire, FirebaseListObservable,FirebaseObjectObservable} from 'angularfire2';
 
+import { AfoListObservable,AfoObjectObservable, AngularFireOffline } from 'angularfire2-offline';
+
 import * as firebase from 'firebase';
 
 @Injectable()
 export class FirebaseService {
 listings:FirebaseListObservable<any[]>;
+olistings:AfoListObservable<any[]>;
 
 listing:FirebaseObjectObservable<any[]>;
+olisting:AfoObjectObservable<any>;
 
 folder:any;
 num:number;
 
-  constructor(private af:AngularFire) { 
+  constructor(private af:AngularFire,
+  private afo: AngularFireOffline) { 
 this.folder='listingimages';
   }
 
@@ -21,6 +26,25 @@ this.folder='listingimages';
   this.listings=this.af.database.list('/listings') as FirebaseListObservable<Listing[]>
   return this.listings;
   }
+
+
+  getafoListings()
+  {
+       this.olistings=this.afo.database.list('/listings') as AfoListObservable<Listing[]>
+      return this.olistings
+
+  
+  }
+
+
+
+
+
+
+
+
+
+
 
   getListingDetails(id){
 
@@ -35,7 +59,7 @@ this.folder='listingimages';
   {
     console.log(id);
     const itemObservable = this.af.database.object('/listings/'+id);
-    itemObservable.update({ owner: 'cc' });
+    itemObservable.update({ owner: 'CC' });
   }
 
   deleteListing(id)
@@ -48,8 +72,13 @@ this.folder='listingimages';
 
   addListing(listing)
   {
+
+
+   
+
+
     
-    this.num=this.num+1;
+    //this.num=this.num+1;
 
   		//Create root ref
 
@@ -65,9 +94,9 @@ this.folder='listingimages';
   			listing.path=path;
   			return this.listings.push(listing);
 
-  		});
+  		}); 
 
-  }
+  } 
 
   }
 
