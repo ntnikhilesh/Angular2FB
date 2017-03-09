@@ -98,7 +98,7 @@ export class FirebaseService
 
     addListing(listing)
     {
-
+    console.log('online adding');
 
    
 
@@ -127,6 +127,42 @@ export class FirebaseService
       } 
 
   }
+
+   oaddListing(listing)
+    {
+
+    
+    
+    //this.num=this.num+1;
+
+      //Create root ref
+
+      let storageRef=firebase.storage().ref();
+
+      for(let selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]])
+      {
+
+
+        let path='/TD-images/'+Math.random();
+        let iRef=storageRef.child(path);
+        iRef.put(selectedFile).then((snapshot)=>
+        {
+           listing.image=selectedFile.name;
+           listing.path=path;
+           console.log('offline adding');
+           return this.olistings.push(listing);
+
+        }); 
+
+      } 
+
+  }
+
+
+
+
+
+
 
 
 

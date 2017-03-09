@@ -15,6 +15,7 @@
             <li *ngIf="(af.auth | async)"><a [routerLink]="['/listings']">Listings(Online)</a></li>
             <li  *ngIf="(af.auth | async)" ><a [routerLink]="['/add-listings']">Add Listing</a></li>
             <li  *ngIf="(af.auth | async)" ><a [routerLink]="['/offline']">Listings(Online+Offline)</a></li>
+            <li  *ngIf="(af.auth | async)" ><a [routerLink]="['/oadd-listings']">Add Listing(Online+Offline)</a></li>
            
           </ul>
           <ul class="nav navbar-nav navbar-right"> 
