@@ -56,19 +56,19 @@ export class OlistingComponent implements OnInit {
   	}
 
 
-  /*	updateItem()
+  	updateItem()
   	{	
   		console.log(this.id);
   		this.id=this.route.snapshot.params['id'];
-  		this.firebaseService.updateListing(this.id);
+  		this.firebaseService.updateoListing(this.id);
   		
   	}
 
-  	deleteItem()
+  	deleteoItem()
   	{
-  		console.log(this.id);
+  		console.log('offline id'+this.id);
   		this.id=this.route.snapshot.params['id'];
-  		this.firebaseService.deleteListing(this.id);
-  	} */
+  		this.firebaseService.deleteoListing(this.id);
+  	} 
 
 }

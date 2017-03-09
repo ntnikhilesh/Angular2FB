@@ -81,6 +81,20 @@ export class FirebaseService
       itemObservable.remove();
     }
 
+    updateoListing(id)
+    {
+      console.log(id);
+      const itemObservable = this.afo.database.object('/listings/'+id);
+      itemObservable.update({ owner: 'CC-Offline' });
+    }
+
+    deleteoListing(id)
+    {
+      console.log('offline id from service '+id);
+      const itemObservable = this.afo.database.object('/listings/'+id);
+      itemObservable.remove();
+    }
+
 
     addListing(listing)
     {
